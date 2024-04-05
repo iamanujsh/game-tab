@@ -1,15 +1,18 @@
+import GameGrid from "./components/GameGrid";
 import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <>
-      <div className="grid md:grid-cols-1 ">
+      <div className="grid grid-cols-1">
         <div className="">
           <Navbar />
         </div>
-        <div className="flex ">
-          <div className="bg-purple-500 w-1/2 sm:block hidden">Aside</div>
-          <div className="bg-yellow-500 sm:w-1/2 w-full">Main</div>
+        <div className="grid grid-cols-12 ">
+          <div className="hidden sm:hidden md:col-span-2 md:block">Aside</div>
+          <div className=" md:col-span-10 col-span-12">
+            <GameGrid />
+          </div>
         </div>
       </div>
     </>
