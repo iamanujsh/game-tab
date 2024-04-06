@@ -32,7 +32,9 @@ const PlatfomIconList = ({ platforms }: Props) => {
 
   return (
     <div className="flex gap-3 mt-3 mb-3 text-gray-300 ">
-      {platforms.map((platform) => iconMap[platform.slug])}
+      {platforms.map((platform) => (
+        <span key={platform.id}>{iconMap[platform.slug]}</span>
+      ))}
     </div>
   );
 };
