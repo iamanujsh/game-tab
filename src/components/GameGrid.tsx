@@ -3,6 +3,7 @@ import GameCard from "./GameCard";
 
 const GameGrid = () => {
   const { games, error } = useGame();
+  // console.log(games);
 
   return (
     <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-1 ">
