@@ -10,7 +10,6 @@ interface Props {
 }
 
 const GameCard = ({ game }: Props) => {
-  console.log(game.metacritic);
   return (
     <div>
       <Card className="m-2 bg-[#202020] text-white font-bold overflow-hidden rounded-xl shadow-lg drop-shadow-2xl">
