@@ -26,28 +26,37 @@ interface FetchGamesResponse {
 const useGame = (
   selectedGenre: Genres | null,
   selectedPlatforms: Platform | null,
+  selectedSort: string | "",
   requestConfig?: AxiosRequestConfig
 ) => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchGames = async () => {
+    setIsLoading(true);
     try {
       const res = await apiClinet.get<FetchGamesResponse>("/games", {
-        params: { genres: selectedGenre?.id, platforms: selectedPlatforms?.id },
+        params: {
+          genres: selectedGenre?.id,
+          platforms: selectedPlatforms?.id,
+          ordering: selectedSort,
+        },
       });
       setGames(res.data.results);
+      setIsLoading(false);
     } catch (error) {
       setError((error as AxiosError).message);
       console.log((error as AxiosError).message);
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     fetchGames();
-  }, [selectedGenre, selectedPlatforms]);
+  }, [selectedGenre, selectedPlatforms, selectedSort]);
 
-  return { games, error };
+  return { games, error, isLoading };
 };
 
 export default useGame;

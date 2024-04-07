@@ -3,6 +3,8 @@ import GameCard from "./GameCard";
 import { Genres } from "@/hooks/useGenre";
 import PlatformSelector from "./PlatformSelector";
 import { useState } from "react";
+import SortSelector from "./SortSelector";
+import LoadingSkeleton from "./LoadingSkeleton";
 
 interface Props {
   selectedGenre: Genres | null;
@@ -12,23 +14,28 @@ const GameGrid = ({ selectedGenre }: Props) => {
   const [selectedPlatforms, setSelectedPlatforms] = useState<Platform | null>(
     null
   );
+  const [selectedSort, setSelectedSort] = useState<string | "">("");
 
-  console.log(selectedPlatforms);
-
-  const { games, error } = useGame(selectedGenre, selectedPlatforms);
-  // console.log(games);
+  const { games, error, isLoading } = useGame(
+    selectedGenre,
+    selectedPlatforms,
+    selectedSort
+  );
 
   return (
     <>
       <h1 className="font-bold text-5xl py-8">
         {selectedGenre ? selectedGenre?.name : "All Games"}
       </h1>
-      <PlatformSelector onSelectedPlatform={setSelectedPlatforms} />
+      <div className="flex items-center">
+        <PlatformSelector onSelectedPlatform={setSelectedPlatforms} />
+        <SortSelector onSetSelectedSort={setSelectedSort} />
+      </div>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-1 ">
         {error && <p>{error}</p>}
-        {games.map((game) => (
-          <GameCard key={game.id} game={game} />
-        ))}
+        {isLoading && <LoadingSkeleton />}
+        {isLoading === false &&
+          games.map((game) => <GameCard key={game.id} game={game} />)}
       </div>
     </>
   );

@@ -26,7 +26,7 @@ const PlatformSelector = ({ onSelectedPlatform }: Props) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline">
-            {selectedPlatform === "" ? "All" : selectedPlatform}
+            {selectedPlatform === "" ? "Platforms" : selectedPlatform}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>

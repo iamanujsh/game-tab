@@ -3,13 +3,9 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import Navbar from "./components/Navbar";
 import { Genres } from "./hooks/useGenre";
-import { Platform } from "./hooks/useGames";
 
 function App() {
   const [selectedGenre, setSelectedGenres] = useState<Genres | null>(null);
-  // console.log(selectedGenre);
-
-  // console.log(selectedPlatforms)
 
   return (
     <>
