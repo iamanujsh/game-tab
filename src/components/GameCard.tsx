@@ -1,18 +1,19 @@
-import { Card, CardContent } from "@/components/ui/card";
-
 import { Game } from "@/hooks/useGames";
 import PlatfomIconList from "./PlatfomIconList";
 import CriticScore from "./CriticScore";
 import getCroppedImageUrl from "./getCroppedImageUrl";
+
+import { Card, CardContent } from "@/components/ui/card";
 
 interface Props {
   game: Game;
 }
 
 const GameCard = ({ game }: Props) => {
+  // console.log(game.genres[0]);
   return (
     <div className="">
-      <Card className="m-2 bg-[#202020] text-white font-bold overflow-hidden rounded-xl shadow-lg drop-shadow-2xl">
+      <Card className="m-2  bg-[#202020] text-white font-bold overflow-hidden rounded-xl shadow-lg drop-shadow-2xl">
         <img src={getCroppedImageUrl(game.background_image)} />
         <CardContent className="pt-3">
           <PlatfomIconList

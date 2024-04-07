@@ -10,9 +10,12 @@ function App() {
 
   return (
     <>
-      <div className="grid grid-cols-1">
+      <div className="grid">
         <div className="">
-          <Navbar handleSetSearch={setSearch} />
+          <Navbar
+            onSelectedGenre={setSelectedGenres}
+            handleSetSearch={setSearch}
+          />
         </div>
         <div className="grid grid-cols-12 ">
           <div className="hidden sm:hidden md:col-span-2 md:block">
