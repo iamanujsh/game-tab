@@ -1,8 +1,7 @@
 import apiClinet from "@/services/api-clinet";
-import { AxiosError, AxiosRequestConfig } from "axios";
+import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { Genres } from "./useGenre";
-import { platform } from "os";
 
 export interface Platform {
   id: number;
@@ -26,8 +25,8 @@ interface FetchGamesResponse {
 const useGame = (
   selectedGenre: Genres | null,
   selectedPlatforms: Platform | null,
-  selectedSort: string | "",
-  requestConfig?: AxiosRequestConfig
+  searchText: string,
+  selectedSort: string
 ) => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
@@ -41,6 +40,7 @@ const useGame = (
           genres: selectedGenre?.id,
           platforms: selectedPlatforms?.id,
           ordering: selectedSort,
+          search: searchText,
         },
       });
       setGames(res.data.results);
@@ -54,7 +54,7 @@ const useGame = (
 
   useEffect(() => {
     fetchGames();
-  }, [selectedGenre, selectedPlatforms, selectedSort]);
+  }, [selectedGenre, selectedPlatforms, selectedSort, searchText]);
 
   return { games, error, isLoading };
 };

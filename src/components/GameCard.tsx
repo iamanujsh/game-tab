@@ -11,7 +11,7 @@ interface Props {
 
 const GameCard = ({ game }: Props) => {
   return (
-    <div>
+    <div className="">
       <Card className="m-2 bg-[#202020] text-white font-bold overflow-hidden rounded-xl shadow-lg drop-shadow-2xl">
         <img src={getCroppedImageUrl(game.background_image)} />
         <CardContent className="pt-3">

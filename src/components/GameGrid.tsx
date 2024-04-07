@@ -8,17 +8,19 @@ import LoadingSkeleton from "./LoadingSkeleton";
 
 interface Props {
   selectedGenre: Genres | null;
+  searchText: string;
 }
 
-const GameGrid = ({ selectedGenre }: Props) => {
+const GameGrid = ({ selectedGenre, searchText }: Props) => {
   const [selectedPlatforms, setSelectedPlatforms] = useState<Platform | null>(
     null
   );
-  const [selectedSort, setSelectedSort] = useState<string | "">("");
+  const [selectedSort, setSelectedSort] = useState<string>("");
 
   const { games, error, isLoading } = useGame(
     selectedGenre,
     selectedPlatforms,
+    searchText,
     selectedSort
   );
 
@@ -27,7 +29,7 @@ const GameGrid = ({ selectedGenre }: Props) => {
       <h1 className="font-bold text-5xl py-8">
         {selectedGenre ? selectedGenre?.name : "All Games"}
       </h1>
-      <div className="flex items-center">
+      <div className="flex items-center ">
         <PlatformSelector onSelectedPlatform={setSelectedPlatforms} />
         <SortSelector onSetSelectedSort={setSelectedSort} />
       </div>
