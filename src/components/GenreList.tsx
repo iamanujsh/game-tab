@@ -1,6 +1,7 @@
 import useGenre, { Genres } from "@/hooks/useGenre";
 import { useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   onSelectedGenre: (genre: Genres) => void;
@@ -9,6 +10,7 @@ interface Props {
 const GenreList = ({ onSelectedGenre }: Props) => {
   const [selectedGenreId, setSelectedGenreId] = useState<number>();
   const { genres, isLoading } = useGenre();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -33,6 +35,7 @@ const GenreList = ({ onSelectedGenre }: Props) => {
               onClick={() => {
                 onSelectedGenre(genre);
                 setSelectedGenreId(genre.id);
+                navigate("/");
               }}
               className={`${
                 selectedGenreId === genre.id && "font-bold  text-[20px]"

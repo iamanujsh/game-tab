@@ -9,6 +9,11 @@ export interface Platform {
   slug: string;
 }
 
+interface ScreenShot {
+  id: number;
+  image: string;
+}
+
 export interface Game {
   id: number;
   name: string;
@@ -17,6 +22,8 @@ export interface Game {
   metacritic: number;
   released: Date;
   genres: Genres[];
+  ratings_count: number;
+  short_screenshots: ScreenShot[]; // Update this to an array
 }
 
 interface FetchGamesResponse {

@@ -1,5 +1,6 @@
 import { Input } from "./ui/input";
-import { ChangeEvent, useRef, useState } from "react";
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   handleSetSearch: (input: string) => void;
@@ -7,12 +8,14 @@ interface Props {
 
 const SearchInput = ({ handleSetSearch }: Props) => {
   let inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         if (inputRef.current) handleSetSearch(inputRef.current.value);
+        navigate("/");
       }}
       className="flex items-center gap-4 w-full "
     >

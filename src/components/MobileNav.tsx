@@ -1,15 +1,13 @@
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Button } from "./ui/button";
 
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Button } from "./ui/button";
+import { ScrollArea } from "./ui/scroll-area";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import useGenre, { Genres } from "@/hooks/useGenre";
 import { useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
+
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   onSelectedGenre: (genre: Genres) => void;
@@ -18,6 +16,7 @@ interface Props {
 const MobileNav = ({ onSelectedGenre }: Props) => {
   const [selectedGenreId, setSelectedGenreId] = useState<number>();
   const { genres, isLoading } = useGenre();
+  const navigate = useNavigate();
   return (
     <>
       <Sheet>
@@ -27,7 +26,7 @@ const MobileNav = ({ onSelectedGenre }: Props) => {
           </Button>
         </SheetTrigger>
         <SheetContent className="w-fit">
-          <SheetHeader>
+          <ScrollArea className="h-full ">
             <h1 className="font-bold px-7 py-3 text-4xl">Genres</h1>
             {isLoading && (
               <div className="flex  justify-center h-52 items-center ">
@@ -49,6 +48,7 @@ const MobileNav = ({ onSelectedGenre }: Props) => {
                     onClick={() => {
                       onSelectedGenre(genre);
                       setSelectedGenreId(genre.id);
+                      navigate("/");
                     }}
                     className={`${
                       selectedGenreId === genre.id && "font-bold  text-[20px]"
@@ -58,7 +58,7 @@ const MobileNav = ({ onSelectedGenre }: Props) => {
                   </p>
                 </div>
               ))}
-          </SheetHeader>
+          </ScrollArea>
         </SheetContent>
       </Sheet>
     </>
