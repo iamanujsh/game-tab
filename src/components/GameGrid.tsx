@@ -27,7 +27,7 @@ const GameGrid = ({ selectedGenre, searchText, handleSelectedGame }: Props) => {
 
   return (
     <>
-      <h1 className="font-bold text-5xl py-8">
+      <h1 className="font-bold text-5xl py-8 sm:ml-6 md:ml-0 ml-6">
         {selectedGenre ? selectedGenre?.name : "All Games"}
       </h1>
       {/* Sorting */}
